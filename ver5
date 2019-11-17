@@ -2,27 +2,26 @@
 The LinkedList class implements a Linked list that contains inventory
 *********************************************************************/
 import java.util.Scanner;
+import java.util.*;
 class LinkedList
 {
-    /****************************************
-       The Node class stores a list element
-       and a reference to the next node.
+   /****************************************
+       The Node class stores a list element and a reference to the next node.
     ***************************************/
-
     private class Node
     {
         int id; //Item Number
         String Category; //category
-        String Description; // Description 
+        String Description; // Description
         int value;//value
         Node next;      
-
-        /**
+       
+           /**********************************************************
            Constructor.            
            @param val The element to store in the node.
            @param n The reference to the successor node.
-        */
-
+        *************************************************************/
+       
         Node(int itnum, String Catg, String Desc, int val, Node n)
         {
             id = itnum;
@@ -30,55 +29,53 @@ class LinkedList
             Description = Desc;
             value = val;
             next = n;
-        } 
-
+        }
+       
         /****************************************
-           Constructor. 
-           @param val The element to store in the node.
+           Constructor.@param val The element to store in the node.
        ******************************************/
-
+       
         Node(int itnum, String Catg, String Desc, int val)
         {
            // Call the other (sister) constructor.
            id = itnum;
             Category = Catg;
             Description = Desc;
-            value = val;       
+            value = val;      
         }  
-    }	
+    }
 
     private Node first;  // list head
     private Node last;   // last element in list
-
+   
     /*****************
        Constructor.
     ******************/
-
+   
     public LinkedList()
     {
         first = null;
         last = null;        
     }
-
+   
     /***********************************************
-    The isEmpty method checks to see if the list is empty.
-    @return true if list is empty, false otherwise.
+    Method :isEmpty method checks to see if the list is empty.@return true if list is empty, false otherwise.
+    Worked on by: Surmayee
     *************************************************/
-
+   
     public boolean isEmpty()
     {        
-        return first == null;       
+        return first == null;      
     }
-
-    /***********************************************
+   
+     /***********************************************
        The size method returns the length of the list.
        @return The number of elements in the list.
     ************************************************/
-
     public int size()
     {
        int count = 0;
-       Node p = first;     
+       Node p = first;    
        while (p != null)
        {
            // There is an element at p
@@ -87,17 +84,16 @@ class LinkedList
        }
        return count;
     }
-
-    /***********************************************************
+   
+   /***********************************************************
        Method : Add
        Worked on by : Daniel, Aidan
        The add method adds an element to the end of the list.
        @param e The value to add to theend of the list.       
-    ************************************************************/
-
+    ************************************************************/   
     public void add(int itnum, String Catg, String Desc, int val)
     {
-      if (isEmpty()) 
+      if (isEmpty())
       {
           first = new Node(itnum,Catg,Desc,val);
           last = first;
@@ -111,60 +107,93 @@ class LinkedList
     }
     /***********************************************************
     Method: Delete (from the end)
-    Worked on by: 
+    Worked on by: Shelby, Sindhoori
     ***********************************************************/
-    public void deleteLast() { 
-    Node curr = null; 
-    for (curr = this.first; curr.next.next != null;curr = curr.next) { 
-    } 
+    public void deleteLast() {
+    Node curr = null;
+    for (curr = this.first; curr.next.next != null;curr = curr.next) {
+    }
     curr.next = null;
     }
-
-    /***********************************************************
-       The toString method computes the string
-       representation of the list.
-       @return The string form of the list.
+   
+     /***********************************************************
+       Method:  toString 
+                     this method computes the string representation of the list. @return The string form of the list.
+       Worked on by: Harshita & Surmayee
     ************************************************************/
-
+   
     public String toString()
     {
       StringBuilder strBuilder = new StringBuilder();
-
+     
       // Use p to walk down the linked list
       Node p = first;
       while (p != null)
       {
-         strBuilder.append(p.id + "\t"); 
-         strBuilder.append(p.Category + "\t"); 
-         strBuilder.append(p.Description + "\t"); 
-         strBuilder.append(p.value + "\n"); 
+         strBuilder.append(p.id + "\t");
+         strBuilder.append(p.Category + "\t");
+         strBuilder.append(p.Description + "\t");
+         strBuilder.append(p.value + "\n");
          p = p.next;
       }      
-      return strBuilder.toString(); 
+      return strBuilder.toString();
     }
-    /***********************************************************
-       Method: Search for an item by name or id
-       Worked on by: Rafay  
+   /***********************************************************
+       Method: How many items are in each category
+       Worked on by: Shafi
     ************************************************************/ 
-     // searching for an item by name or id
-     public boolean search ( Node first, int x)
-      {
-	         Node current = first;
-	         while (current != null)
-	         {
-	         	if (current.id == x)
-	         	    return true;
-	             current = current.next; 
-            }
-            return false;
-     }
- 
+  public int sizeByCategory(String catg)
+   {
+   int count = 0;
+   Node p = first;
+      while (p != null )
+   {
+
+   if(p.Category.equals(catg))
+      count ++;
+   p = p.next;
+   }
+   return count;
+   }
     /***********************************************************
+       Method:  search for an item by name or ID and return its value
+       Worked on by: Rafay
+    ************************************************************/   
+  public int sizeByID(int itnum)
+   {
+   int count = 0;
+   Node p = first;
+      while (p != null )
+   {
+
+   if(p.id == itnum)
+      count ++;
+   p = p.next;
+   }
+   return count;
+   }
+   /***********************************************************
+       Method:  search for an item by name or ID and return its value
+       Worked on by: Rafay
+    ************************************************************/  
+   public int searchByID (int x)
+    {
+    Node current = first;
+    while (current != null)
+    {
+    if (current.id == x)
+    return x;
+       current = current.next;
+      }
+      return 0;
+      }
+  /***********************************************************
        Method: Main
        Worked on by: Everyone 
        Integrated by: Danielle  
     ************************************************************/   
-    public static void main(String [] args)
+
+ public static void main(String [] args)
     {
        Scanner input = new Scanner(System.in);
    
@@ -172,54 +201,63 @@ class LinkedList
          
          ll.add(1, "food", "apple", 3);
 
-         System.out.println("Hello");
+            System.out.println("Hello");
    
-         System.out.print(ll);
-         System.out.println("Would you like to add an item? ( Y or N)");
-         String userInput = input.next();
-                
+            System.out.print(ll);
+                System.out.println("Would you like to add an item? ( Y or N)");
+                String userInput = input.next();
+               
              do
-             {                
+             {  
                 System.out.println("Enter category name: ");
                 String name = input.next();
-                            
+                           
                  System.out.println("Enter item ID: ");
                   int id = input.nextInt();
                              
-                  System.out.println("Enter description: ");
+                  System.out.println("Entre description: ");
                   String description = input.next();
                              
                   System.out.println("Enter value: ");
                    int value = input.nextInt();
                              
                    ll.add(id,name,description,value);
-                                  
-                 System.out.print(ll);
+                                 
+                 System.out.print("Inventory before deleting from end: \t");
+                 System.out.println(ll);
                  System.out.println();                      
                  System.out.println("Would you like to add an item? ( Y or N)");
                   userInput = input.next();
-             } 
-             while(!userInput.equals("N"));
-        if(userInput.equals("N"))
-        {
-            System.out.println("Would you like to delete the last thing ");
-            String uInput = input.next();
-            if (uInput.equals("Y"))
-            {
-               ll.deleteLast();
-              System.out.print(ll); 
-            }
-            else if (uInput.equals("N"))
-            {
-                ll.search(llist.first, 2);
-            }
-        }
-        
-        System.out.println("The inventory is: ");
-         System.out.print(ll);
+             }
+             while(!userInput.equalsIgnoreCase("N"));
+       
+        //delete from end
+        ll.deleteLast();
+       
+        System.out.println("Inventory after deleting item: ");
+        System.out.print(ll);
+       
         System.out.println();
-        System.out.print("Size of inventory" + " " + ll.size());
-        
-        
-}
-}
+       
+       
+        System.out.println("Is inventory empty true or false?: " + ll.isEmpty());
+        System.out.println();
+       
+        System.out.println("Size of inventory: " + ll.size());
+        System.out.println();
+       
+        System.out.println("Size by category: " + ll.sizeByCategory("food"));
+        System.out.println();
+       
+        System.out.println("Size by ID: " + ll.sizeByID(5));
+        System.out.println();
+       
+        System.out.println("Search by ID: " + ll.searchByID(4));
+       
+         
+         
+    }
+ }
+ 
+ 
+

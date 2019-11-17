@@ -157,7 +157,7 @@ class LinkedList
    }
     /***********************************************************
        Method:  search for an item by name or ID and return its value
-       Worked on by: Rafay
+       Worked on by: Rafay & Anuhya
     ************************************************************/   
   public int sizeByID(int itnum)
    {

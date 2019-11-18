@@ -157,7 +157,7 @@ class LinkedList
    }
     /***********************************************************
        Method:  search for an item by name or ID and return its value
-       Worked on by: Rafay & Anuhya
+       Worked on by: Rafay
     ************************************************************/   
   public int sizeByID(int itnum)
    {
@@ -176,13 +176,13 @@ class LinkedList
        Method:  search for an item by name or ID and return its value
        Worked on by: Rafay
     ************************************************************/  
-   public int searchByID (int x)
+   public int searchByID (Node first,int x)
     {
     Node current = first;
     while (current != null)
     {
-    if (current.id == x)
-    return x;
+      if (current.id == x)
+         return x;
        current = current.next;
       }
       return 0;
@@ -201,60 +201,67 @@ class LinkedList
          
          ll.add(1, "food", "apple", 3);
 
-            System.out.println("Hello");
+         System.out.println("Hello");
    
-            System.out.print(ll);
-                System.out.println("Would you like to add an item? ( Y or N)");
-                String userInput = input.next();
-               
+         System.out.print(ll);
+         System.out.println("Would you like to add an item? ( Y or N)");
+         String userInput = input.next();
+                
              do
-             {  
+             {                
                 System.out.println("Enter category name: ");
                 String name = input.next();
-                           
+                            
                  System.out.println("Enter item ID: ");
                   int id = input.nextInt();
                              
-                  System.out.println("Entre description: ");
+                  System.out.println("Enter description: ");
                   String description = input.next();
                              
                   System.out.println("Enter value: ");
                    int value = input.nextInt();
                              
                    ll.add(id,name,description,value);
-                                 
-                 System.out.print("Inventory before deleting from end: \t");
-                 System.out.println(ll);
+                                  
+                 System.out.print(ll);
                  System.out.println();                      
                  System.out.println("Would you like to add an item? ( Y or N)");
                   userInput = input.next();
-             }
-             while(!userInput.equalsIgnoreCase("N"));
+             } 
+             while(!userInput.equals("N"));
+        if(userInput.equals("N"))
+        {
+            System.out.println("Would you like to delete the last thing ");
+            String uInput = input.next();
+            if (uInput.equals("Y"))
+            {
+               ll.deleteLast();
+               System.out.println("Inventory after deleting item: ");
+              System.out.print(ll); 
+            }
+            if (uInput.equals("N"))
+            {
+                 System.out.println("Is inventory empty true or false?: " + ll.isEmpty());
+                 System.out.println();
        
-        //delete from end
-        ll.deleteLast();
+                 System.out.println("Size of inventory: " + ll.size());
+                 System.out.println();
        
-        System.out.println("Inventory after deleting item: ");
-        System.out.print(ll);
+                 System.out.println("Size by category: " + ll.sizeByCategory("food"));
+                 System.out.println();
        
+                  System.out.println("Size by ID: " + ll.sizeByID(5));
+                  System.out.println();
+       
+                  System.out.println("Search by ID: " + ll.searchByID(ll.first,2));
+
+            }
+        }
+        
+        System.out.println("The inventory is: ");
+         System.out.print(ll);
         System.out.println();
-       
-       
-        System.out.println("Is inventory empty true or false?: " + ll.isEmpty());
-        System.out.println();
-       
-        System.out.println("Size of inventory: " + ll.size());
-        System.out.println();
-       
-        System.out.println("Size by category: " + ll.sizeByCategory("food"));
-        System.out.println();
-       
-        System.out.println("Size by ID: " + ll.sizeByID(5));
-        System.out.println();
-       
-        System.out.println("Search by ID: " + ll.searchByID(4));
-       
-         
+        System.out.print("Size of inventory" + " " + ll.size());         
          
     }
  }

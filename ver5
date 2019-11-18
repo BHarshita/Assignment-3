@@ -206,8 +206,8 @@ class LinkedList
          System.out.print(ll);
          System.out.println("Would you like to add an item? ( Y or N)");
          String userInput = input.next();
-                
-             do
+             if(userInput.equals("Y"))   
+             //do
              {                
                 System.out.println("Enter category name: ");
                 String name = input.next();
@@ -228,7 +228,7 @@ class LinkedList
                  System.out.println("Would you like to add an item? ( Y or N)");
                   userInput = input.next();
              } 
-             while(!userInput.equals("N"));
+             //while(!userInput.equals("N"));
         if(userInput.equals("N"))
         {
             System.out.println("Would you like to delete the last thing ");
@@ -252,7 +252,9 @@ class LinkedList
        
                   System.out.println("Size by ID: " + ll.sizeByID(5));
                   System.out.println();
-       
+                   
+                  //System.out.println(" Please enter an ID number to search for: " );
+                  //int numID
                   System.out.println("Search by ID: " + ll.searchByID(ll.first,2));
 
             }

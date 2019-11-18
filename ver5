@@ -206,7 +206,7 @@ class LinkedList
          System.out.print(ll);
          System.out.println("Would you like to add an item? ( Y or N)");
          String userInput = input.next();
-             if(userInput.equals("Y"))   
+             while(userInput.equalsIgnoreCase("Y"))   
              //do
              {                
                 System.out.println("Enter category name: ");
@@ -228,18 +228,31 @@ class LinkedList
                  System.out.println("Would you like to add an item? ( Y or N)");
                   userInput = input.next();
              } 
-             //while(!userInput.equals("N"));
-        if(userInput.equals("N"))
+            // while(!userInput.equalsIgnoreCase("N"));
+        if(userInput.equalsIgnoreCase("N"))
         {
             System.out.println("Would you like to delete the last thing ");
             String uInput = input.next();
-            if (uInput.equals("Y"))
+            if (uInput.equalsIgnoreCase("Y"))
             {
                ll.deleteLast();
                System.out.println("Inventory after deleting item: ");
-              System.out.print(ll); 
+               System.out.println("Is inventory empty true or false?: " + ll.isEmpty());
+                 System.out.println();
+       
+                 System.out.println("Size of inventory: " + ll.size());
+                 System.out.println();
+       
+                 System.out.println("Size by category: " + ll.sizeByCategory("food"));
+                 System.out.println();
+       
+                  System.out.println("Size by ID: " + ll.sizeByID(5));
+                  System.out.println();
+                   
+                  System.out.println("Search by ID: " + ll.searchByID(ll.first,2));
+                 System.out.print(ll); 
             }
-            if (uInput.equals("N"))
+            if (uInput.equalsIgnoreCase("N"))
             {
                  System.out.println("Is inventory empty true or false?: " + ll.isEmpty());
                  System.out.println();
